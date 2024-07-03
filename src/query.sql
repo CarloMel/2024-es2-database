@@ -61,7 +61,12 @@ group by subscription_year;
 -- Esercizi con JOIN
 -- 11. Mostra il nome di ogni studente insieme al nome del corso a cui sono iscritti.
 -- res: 30
-
+select s.name, c.name
+from student s
+join course_subscription cs
+on cs.student_id = s.id
+join course c
+on course_id = c.id;
 
 
 -- 12. Elenca tutti i corsi insieme ai nomi dei professori che li insegnano.
