@@ -71,12 +71,21 @@ on course_id = c.id;
 
 -- 12. Elenca tutti i corsi insieme ai nomi dei professori che li insegnano.
 -- res: 10
-
+select c.name, p.name
+from professor p
+join course c
+on c.professor_id = p.id;
 
 
 -- 13. Trova gli studenti e i corsi relativi al dipartimento di Chimica.
 -- res: 3
-
+select s.name, c.name
+from course_subscription cs 
+join student s 
+on cs.student_id = s.id
+join course c
+on cs.course_id = c.id
+where department like 'Chimica';
 
 
 -- 14. Visualizza i nomi degli studenti e i corsi che hanno frequentato nel 2022.
