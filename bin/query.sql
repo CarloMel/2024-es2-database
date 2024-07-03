@@ -90,12 +90,21 @@ where department like 'Chimica';
 
 -- 14. Visualizza i nomi degli studenti e i corsi che hanno frequentato nel 2022.
 -- res: 6
-
+select s.name,c.name
+from course_subscription cs 
+join student s 
+on cs.student_id = s.id
+join course c
+on cs.course_id = c.id
+where s.subscription_year = 2022;
 
 
 -- 15. Elencare i professori con i loro corsi e i relativi dipartimenti.
 -- res: 10
-
+select p.name,c.department
+from course c
+join professor p
+on c.professor_id = p.id;
 
 -- DELETED
 -- 16. Trova i corsi senza studenti iscritti.
@@ -115,7 +124,14 @@ where department like 'Chimica';
 
 -- 19. Visualizza i corsi con il maggior numero di studenti.
 -- res: 1 (3)
-
+select c.name, COUNT(s.id)
+from course c
+join course_subscription cs 
+on cs.course_id = c.id
+join student s
+on cs.student_id = s.id
+group by c.name
+limit 1;
 
 -- DELETED
 -- 20. Trova gli studenti che sono iscritti a più di 3 corsi.
